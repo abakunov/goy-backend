@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./goy_app
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./goy_app/:/usr/src/app/
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD==~Qekg43M>J0
+      - POSTGRES_DB=goe_db
+
+volumes:
+  postgres_data:

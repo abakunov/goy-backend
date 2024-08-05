@@ -10,6 +10,15 @@ services:
       - 8000:8000
     depends_on:
       - db
+
+  listener:
+    build: ./goy_app
+    command: python3 manage.py listener
+    volumes:
+      - ./goy_app/:/usr/src/app/
+    depends_on:
+      - db
+
   db:
     image: postgres:15
     volumes:

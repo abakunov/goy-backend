@@ -12,6 +12,7 @@ def set_balances(user):
     user.ton_balance = 0
     user.goy_balance = 1
     user.save()
+    print(user.username + " got 1 GOY")
 
     # - при оплате 1 тон начисляем 1 гой и 0 тон
     # - за каждого приглашенного гоя начисляем 0.5 тон и 1 гой
@@ -23,6 +24,7 @@ def set_balances(user):
         ref_user.ton_balance = ref_user.ton_balance + 0.5
         ref_user.goy_balance = ref_user.goy_balance + 1
         ref_user.save()
+        print(ref_user.username + " got 1 GOY and 0.5 TON")
     except:
         pass
 
@@ -32,6 +34,7 @@ def set_balances(user):
         super_ref_user.ton_balance = super_ref_user.ton_balance + 0.25
         super_ref_user.goy_balance = super_ref_user.goy_balance + 0.5
         super_ref_user.save()
+        print(ref_user.username + " got 0.5 GOY and 0.25 TON")
     except:
         pass
 
@@ -72,14 +75,14 @@ class UserCreatedListener(threading.Thread):
                     
                     ton_amount = float(message['tonAmount'])
                     sender_adress = message['senderAddress']
-                    tg_user_id = int(message['messageText'])
 
                     user = None
                     try:
+                        tg_user_id = int(message['messageText'])
                         user = User.objects.get(tg_user_id=tg_user_id)
                     except:
                         pass
-
+                    
                     if user is None:
                         continue
 

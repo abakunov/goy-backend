@@ -11,13 +11,13 @@ services:
     depends_on:
       - db
 
-  listener:
-    build: ./goy_app
-    command: python manage.py listener
-    volumes:
-      - ./goy_app/:/usr/src/app/
-    depends_on:
-      - db
+  # listener:
+  #   build: ./goy_app
+  #   command: python manage.py listener
+  #   volumes:
+  #     - ./goy_app/:/usr/src/app/
+  #   depends_on:
+  #     - db
 
   db:
     image: postgres:15

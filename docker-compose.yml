@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   web:
-    build: ./goy_app
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    build:
+      context: ./goy_app
+      network: host
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./goy_app/:/usr/src/app/
@@ -14,9 +14,9 @@ services:
       - db
 
   listener:
-    build: ./goy_app
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    build:
+      context: ./goy_app
+      network: host
     command: python manage.py listener
     volumes:
       - ./goy_app/:/usr/src/app/

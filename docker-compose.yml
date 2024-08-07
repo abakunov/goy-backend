@@ -3,6 +3,8 @@ version: '3.8'
 services:
   web:
     build: ./goy_app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./goy_app/:/usr/src/app/
@@ -11,13 +13,15 @@ services:
     depends_on:
       - db
 
-  # listener:
-  #   build: ./goy_app
-  #   command: python manage.py listener
-  #   volumes:
-  #     - ./goy_app/:/usr/src/app/
-  #   depends_on:
-  #     - db
+  listener:
+    build: ./goy_app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: python manage.py listener
+    volumes:
+      - ./goy_app/:/usr/src/app/
+    depends_on:
+      - db
 
   db:
     image: postgres:15

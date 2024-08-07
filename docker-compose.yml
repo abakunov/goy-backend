@@ -13,7 +13,7 @@ services:
 
   listener:
     build: ./goy_app
-    command: python3 manage.py listener
+    command: python manage.py listener
     volumes:
       - ./goy_app/:/usr/src/app/
     depends_on:

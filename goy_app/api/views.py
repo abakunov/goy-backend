@@ -60,7 +60,7 @@ def is_authorised(request):
 
     is_authorised = False
     if not created:
-        if user.auth_hash == parsed_data['hash'] and user.tg_user_id == parsed_data['tg_user_id']:
+        if user.tg_user_id == parsed_data['tg_user_id']:
             is_authorised = True
 
     if created or is_authorised:

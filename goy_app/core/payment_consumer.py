@@ -88,7 +88,7 @@ class UserCreatedListener(threading.Thread):
 
                     if user.has_paid:
                         continue
-
+                    
                     if ton_amount >= 1:
                         set_balances(user)
                         user.wallet_address = sender_adress
